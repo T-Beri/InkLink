@@ -9,6 +9,7 @@ import Heading from '@tiptap/extension-heading'
 import Image from '@tiptap/extension-image'
 import ImageResize from "tiptap-extension-resize-image"
 import { useEditorStore } from '@/store/use-editor-store'
+import { TextStyle, FontFamily } from '@tiptap/extension-text-style'
 
 
 const Tiptap = () => {
@@ -43,7 +44,7 @@ const Tiptap = () => {
       }
     },
 
-    extensions: [StarterKit,Image,ImageResize.configure({inline: true,}), TableKit.configure({table: { resizable: true }}), BulletList, ListItem, TaskList,TaskItem.configure({nested: true,}),Heading.configure({levels: [1, 2, 3],}),],
+    extensions: [StarterKit,Image,ImageResize.configure({inline: true,}), TableKit.configure({table: { resizable: true }}), BulletList, ListItem, TaskList,TaskItem.configure({nested: true,}),Heading.configure({levels: [1, 2, 3],}),TextStyle, FontFamily],
     content:`
         <table>
           <tbody>
@@ -59,6 +60,7 @@ const Tiptap = () => {
             </tr>
           </tbody>
         </table>
+        <p><span style="font-family:Comic Sans MS, Comic Sans">Did you know that Inter is a really nice font for interfaces?</span></p>
       `,
     // Don't render immediately on the server to avoid SSR issues
     immediatelyRender: false,

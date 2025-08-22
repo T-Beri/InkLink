@@ -5,6 +5,38 @@ import {LucideIcon, Undo2Icon, Redo2Icon, PrinterIcon, SpellCheckIcon,BoldIcon, 
 import {cn} from "@/lib/utils";
 import { useEditorStore } from '@/store/use-editor-store';
 import { Separator } from "@/components/ui/separator";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
+
+
+const FontFamilyButton = () =>{
+    const editor = useEditorStore((state)=>state.editor)
+    const fonts = [
+        { label:"Arial", value:"Arial"},
+        { label:"Times New Roman", value:"Times New Roman"},
+        { label:"Courier New", value:"Courier New"},
+        { label:"Comic Sans", value:"Comic Sans MS, Comic Sans"},
+        { label:"Monospace", value:"monospace"},
+        { label:"cursive", value:"cursive"},
+    ]
+    return(
+        <DropdownMenu>
+            <DropdownMenuTrigger>Font</DropdownMenuTrigger>
+                <DropdownMenuContent>
+                    {fonts.map((item)=>(
+                        <DropdownMenuItem key={item.label} onClick={()=>editor?.chain().focus().setFontFamily(`${item.value}`).run()}>{item.value}</DropdownMenuItem>
+                    ))}
+                </DropdownMenuContent>
+        </DropdownMenu>
+    )
+}
 
 
 interface ToolbarButtonProps{
@@ -118,6 +150,8 @@ export default function ToolBar() {
                 <ToolbarButton key={item.label} {...item}></ToolbarButton>
             ))
         }
+        <Separator orientation="vertical" className="min-h-6 bg-neutral-300"/>
+        <FontFamilyButton></FontFamilyButton>
     </div>
   )
 }
