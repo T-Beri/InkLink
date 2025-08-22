@@ -10,13 +10,31 @@ import Image from '@tiptap/extension-image'
 import ImageResize from "tiptap-extension-resize-image"
 import { useEditorStore } from '@/store/use-editor-store'
 
+
 const Tiptap = () => {
   const {setEditor}  = useEditorStore();
-  const editor = useEditor({
 
+  const editor = useEditor({
     onCreate({editor}){
       setEditor(editor)
     },
+    onDestroy(){
+      setEditor(null)
+    },
+   
+    onTransaction({editor}) {
+      setEditor(editor)
+    },
+    onFocus({editor}){
+      setEditor(editor)
+    },
+    onBlur({editor}){
+      setEditor(editor)
+    },
+    onContentError({editor}){
+      setEditor(editor)
+    },
+    
 
     editorProps:{
       attributes:{
@@ -45,6 +63,7 @@ const Tiptap = () => {
     // Don't render immediately on the server to avoid SSR issues
     immediatelyRender: false,
   })
+  
 
   return (
     <div className="bg-[#F9FBFD] size-full overflow-x-auto px-4 print:p-0 print:bg-white print:overflow-visible">
