@@ -13,6 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { FontFamily } from '@tiptap/extension-text-style';
 
 
 
@@ -31,7 +32,9 @@ const FontFamilyButton = () =>{
             <DropdownMenuTrigger>Font</DropdownMenuTrigger>
                 <DropdownMenuContent>
                     {fonts.map((item)=>(
-                        <DropdownMenuItem key={item.label} onClick={()=>editor?.chain().focus().setFontFamily(`${item.value}`).run()}>{item.value}</DropdownMenuItem>
+                        <DropdownMenuItem key={item.label} onClick={()=>editor?.chain().focus().setFontFamily(`${item.value}`).run()} style={{
+                            fontFamily:`${item.value}`
+                        }}>{item.value}</DropdownMenuItem>
                     ))}
                 </DropdownMenuContent>
         </DropdownMenu>
