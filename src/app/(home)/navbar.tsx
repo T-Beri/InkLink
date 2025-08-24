@@ -3,7 +3,7 @@ import Link from "next/link"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileLines } from "@fortawesome/free-regular-svg-icons"
 import {SearchInput} from "./search-input"
-
+import {UserButton} from "@clerk/nextjs"
 const Navbar=()=> {
   return (
     <div className='flex items-center justify-between h-full w-full'>
@@ -14,6 +14,7 @@ const Navbar=()=> {
             <h3 className='text-xl'>InkLink</h3>
         </div>
       <SearchInput/>
+      <UserButton/>
     </div>
   )
 }
