@@ -7,10 +7,13 @@ import {api} from "../../../convex/_generated/api"
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
+import {useSearchParam} from "@/hooks/use-search-params"
 library.add(fas,far)
 
 export default function Home() {
-  const {results,status,loadMore} = usePaginatedQuery(api.documents.get,{},{initialNumItems:5})
+  const [search] = useSearchParam();
+
+  const {results,status,loadMore} = usePaginatedQuery(api.documents.get,{search},{initialNumItems:5})
 
 
   return (
