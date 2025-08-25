@@ -1,7 +1,8 @@
 "use client"
-import {useQuery} from "convex/react"
+import {usePaginatedQuery} from "convex/react"
 import Navbar from "./navbar"
 import { TemplateGallery } from "./template-gallery"
+import { DocumentsTable } from "./documentsTable"
 import {api} from "../../../convex/_generated/api"
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -9,13 +10,8 @@ import { far } from '@fortawesome/free-regular-svg-icons'
 library.add(fas,far)
 
 export default function Home() {
-  const documents = useQuery(api.documents.get)
+  const {results,status,loadMore} = usePaginatedQuery(api.documents.get,{},{initialNumItems:5})
 
-  if(documents === undefined){
-    return(
-      <p>Loading...</p>
-    )
-  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -24,10 +20,7 @@ export default function Home() {
       </div>
       <div>
         <TemplateGallery/>
-          {documents?.map((document)=>(
-            <span key={document._id}>{document.title}</span>
-          ))}
-        
+          <DocumentsTable documents={results} loadMore={loadMore} status={status}></DocumentsTable>
       </div>
     </div>
     
