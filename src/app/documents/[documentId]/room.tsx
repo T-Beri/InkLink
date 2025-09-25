@@ -1,4 +1,4 @@
-"use client";
+/*"use client";
 
 import { ReactNode } from "react";
 import {
@@ -19,4 +19,4 @@ export function Room({ children }: { children: ReactNode }) {
       </RoomProvider>
     </LiveblocksProvider>
   );
-}
+}*/
